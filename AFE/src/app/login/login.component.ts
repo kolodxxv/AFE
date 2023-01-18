@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 
-  loginForm = this.formBuilder.group({
-    usernname: '',
+  public loginForm: FormGroup = this.formBuilder.group({
+    username: '',
     password: ''
   });
 
@@ -20,7 +20,7 @@ export class LoginComponent {
 
   onSubmit(): void {
     // Process login data here
-    console.warn("Your loggin ha been processed", 
+    console.warn("Your loggin has been processed", 
                 this.loginForm.value) 
     this.loginForm.reset();
   }
