@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -9,13 +9,13 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 })
 export class LoginComponent {
 
-  public loginForm: UntypedFormGroup = this.formBuilder.group({
+  public loginForm: FormGroup = this.formBuilder.group({
     username: '',
     password: ''
   });
 
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
   ) { }
 
   onSubmit(): void {
