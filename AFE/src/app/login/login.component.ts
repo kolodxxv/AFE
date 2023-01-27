@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,13 +17,17 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
   ) { }
 
   onSubmit(): void {
     // Process login data here
-    console.warn("Your loggin has been processed", 
-                this.loginForm.value) 
-    this.loginForm.reset();
+    const { username, password } = this.loginForm.controls;
+    if (username?.value && password?.value) {
+      this.router.navigate(['dashboard'])
+      this.loginForm.reset();
+    }
+    
   }
 
 }
