@@ -17,7 +17,7 @@ export class UsersComponent implements AfterViewInit {
   dataSource: UsersDataSource;
 
   
-  displayedColumns = ['id', 'name', 'surname', 'country', 'city'];
+  public displayedColumns = ['id', 'name', 'surname', 'country', 'city'];
 
   constructor() {
     this.dataSource = new UsersDataSource();
