@@ -13,7 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UsersComponent } from './users/users.component'
+import { UsersComponent } from './users/users.component';
+
 
 
 
@@ -22,7 +23,7 @@ import { UsersComponent } from './users/users.component'
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
     
 
     
