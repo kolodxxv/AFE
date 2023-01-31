@@ -11,8 +11,12 @@ export class DashboardComponent implements OnInit {
   public items: any[] = ['Users', 'Tasks', 'Settings'];
 
   constructor(
-  
+    private router: Router
   ) { }
+
+  public redirectToPageByItemName(content: string): void {
+    this.router.navigate([content.toLowerCase()])
+  }
 
   ngOnInit(): void {
   }

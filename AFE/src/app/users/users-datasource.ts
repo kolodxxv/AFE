@@ -2,11 +2,11 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { UsersItem, EXAMPLE_DATA } from './shared/interfaces/interface';
+import { UsersItem, USERS_DATA } from './shared/interfaces/interface';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
 export class UsersDataSource extends DataSource<UsersItem> {
-  data: UsersItem[] = EXAMPLE_DATA;
+  data: UsersItem[] = USERS_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
