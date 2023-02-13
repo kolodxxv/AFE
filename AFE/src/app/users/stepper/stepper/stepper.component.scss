@@ -1,0 +1,9 @@
+input {
+    border: none;
+    border-bottom: 1px solid #aaa9a9;
+}
+
+::ng-deep .mdc-text-field--no-label {
+    background-color: white !important;
+}
+

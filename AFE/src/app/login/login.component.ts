@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from './shared/login.service';
 
 
 @Component({
@@ -18,15 +19,18 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private loginSrvc: LoginService
   ) { }
 
   onSubmit(): void {
     // Process login data here
     const { username, password } = this.loginForm.controls;
-    if (username?.value && password?.value) {
+  
+    if (this.loginSrvc.checkUserCredentials(username.value, password.value)) {
       this.router.navigate(['dashboard'])
       this.loginForm.reset();
     }
+    
   }
 
 }

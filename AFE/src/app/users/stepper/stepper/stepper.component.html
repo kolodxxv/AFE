@@ -1,0 +1,43 @@
+<ng-container>
+    <mat-stepper [linear]="true">
+        <mat-step label="User" completed="true">
+            <form [formGroup]="userInfoGroup">
+                <mat-form-field>
+                    <input matInput formControlName="nameCtrl" 
+                            required placeholder="Name" />
+                </mat-form-field><br/>
+                <mat-form-field>
+                    <input matInput formControlName="surnameCtrl" 
+                            required placeholder="Surname" 
+                            [disabled]="disableSurnameControl"/>
+                </mat-form-field><br/>
+                <mat-form-field>
+                    <input matInput formControlName="countryCtrl" 
+                            required placeholder="Country" />
+                </mat-form-field><br/>
+                <mat-form-field>
+                    <input matInput formControlName="cityCtrl" 
+                            required placeholder="City" />
+                </mat-form-field><br/>
+                <button mat-raised-button 
+                        color="primary" 
+                        matStepperNext 
+                        >Next</button>
+            </form>
+        </mat-step>
+        <mat-step label="Step2" completed="false">
+            <div>
+                <p>Name: {{this.userInfoGroup.controls['nameCtrl'].value}}</p>
+                <p>Surname: {{this.userInfoGroup.controls['surnameCtrl'].value}}</p>
+                <p>Country: {{this.userInfoGroup.controls['countryCtrl'].value}}</p>
+                <p>City: {{this.userInfoGroup.controls['cityCtrl'].value}}</p>
+                <!-- TODO: Pushing the array into the users list-->
+                <button mat-raised-button 
+                        color="primary"
+                        (click)="onSubmit()"
+                        >Submit</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</ng-container>
+<!-- <ng-template *ngTemplateOutlet="aFunct"></ng-template> -->
