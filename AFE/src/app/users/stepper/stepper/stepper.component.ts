@@ -59,9 +59,12 @@ export class StepperComponent implements OnInit {
     for (let i = 0; i < data.length; i++) {
       // console.log(data[i].id)
       arrayId.push(data[i].id)
+
+      
     }
     // console.log(arrayId)
     // console.log(arrayId[arrayId.length])
     return arrayId[arrayId.length - 1] + 1
   }
+  
 }
