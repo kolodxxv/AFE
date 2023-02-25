@@ -42,8 +42,8 @@ export class UsersComponent implements AfterViewInit {
     this.showWizard = !e;
   }
 
-  public checkConditionFromChildComponent(e: any) : void {
-    console.log(e);
+  public checkConditionFromChildComponent(tableData: any) : void {
+    this.dataSource = tableData;
     this.showWizard = true;
   }
 }

@@ -12,7 +12,7 @@
 <div class="mat-elevation-z8" *ngIf="showWizard">
   <table mat-table 
         class="full-width-table usersTable" 
-        matSort aria-label="Elements">
+        matSort aria-label="Elements" [dataSource]="dataSource">
     
     <!-- Id Column -->
     <ng-container matColumnDef="id">
