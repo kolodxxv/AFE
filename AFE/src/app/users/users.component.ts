@@ -24,7 +24,7 @@ export class UsersComponent implements AfterViewInit {
   public disableSurnameControl: boolean = true;
 
   public inputSubject: Subject<any> = new Subject<any>;
-  // public getUserName$: Observable<any> = this.inputSubject.asObservable();
+  public buttonNextDisabled: boolean = false;
 
 
 
@@ -43,8 +43,13 @@ export class UsersComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
 
     this.inputSubject.subscribe(val =>{
-      val.match(/[0-9]/) ? this.snackBar.open('Error') : this.snackBar.dismiss();
-      })
+      val.match(/[0-9]/) ? (
+        this.snackBar.open('Error'),
+        this.buttonNextDisabled = true
+      ) : (
+          this.snackBar.dismiss(),
+          this.buttonNextDisabled = false)
+      });
     }
 
   public toggleWizard (e: boolean): void {

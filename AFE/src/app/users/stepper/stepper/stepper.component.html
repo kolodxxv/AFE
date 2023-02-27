@@ -21,7 +21,8 @@
                 </mat-form-field><br/>
                 <button mat-raised-button 
                         color="primary" 
-                        matStepperNext 
+                        matStepperNext
+                        [disabled]="buttonNextDisabled" 
                         >Next</button>
             </form>
         </mat-step>

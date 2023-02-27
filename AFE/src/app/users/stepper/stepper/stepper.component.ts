@@ -16,6 +16,7 @@ export class StepperComponent implements OnInit {
   @Input() inputSubject: Subject<any> = new Subject<any>();
 
   @Input() dataSource: UsersItem[] = [];
+  @Input() buttonNextDisabled: boolean = false;
   @Output() checkConditionFromChildComponent: EventEmitter<any> = new EventEmitter<any> ()
 
   constructor(
@@ -35,7 +36,7 @@ export class StepperComponent implements OnInit {
   ngOnInit(): void {
     
     this.userInfoGroup.controls.nameCtrl.valueChanges.subscribe(item =>{
-      if(item && item?.length > 5){
+      if(item && item?.length > 0){
         this.inputSubject.next(item);
       }
       
