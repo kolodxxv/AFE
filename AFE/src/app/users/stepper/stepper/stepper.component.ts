@@ -1,5 +1,6 @@
 import { Component, Input, Output, TemplateRef, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 import { UsersItem } from '../../shared/interfaces/interface';
 
 
@@ -12,6 +13,8 @@ import { UsersItem } from '../../shared/interfaces/interface';
 export class StepperComponent implements OnInit {
   @Input() disableSurnameControl: boolean = true;
   @Input() displayedColumns: any;
+  @Input() inputSubject: Subject<any> = new Subject<any>();
+
   @Input() dataSource: UsersItem[] = [];
   @Output() checkConditionFromChildComponent: EventEmitter<any> = new EventEmitter<any> ()
 
@@ -30,8 +33,13 @@ export class StepperComponent implements OnInit {
   newUser: any = [];
 
   ngOnInit(): void {
-    console.log(this.displayedColumns)
-    console.log(this.disableSurnameControl)
+    
+    this.userInfoGroup.controls.nameCtrl.valueChanges.subscribe(item =>{
+      if(item && item?.length > 5){
+        this.inputSubject.next(item);
+      }
+      
+    })
     // this.userInfoGroup.controls.surnameCtrl.disable();
   }
 

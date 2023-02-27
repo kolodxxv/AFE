@@ -5,7 +5,8 @@
 <ng-container *ngIf="!showWizard">
   <app-stepper [dataSource]="dataSource" 
               [disableSurnameControl]="disableSurnameControl" 
-              [displayedColumns]="displayedColumns" 
+              [displayedColumns]="displayedColumns"
+              [inputSubject]="inputSubject" 
               (checkConditionFromChildComponent)="checkConditionFromChildComponent($event)"
               ></app-stepper>
 </ng-container>
