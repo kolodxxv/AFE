@@ -5,24 +5,43 @@
                 <mat-form-field>
                     <input matInput formControlName="nameCtrl" 
                             required placeholder="Name" />
+                    <div class="alert alert-danger"
+                        *ngIf="userInfoGroup.controls['nameCtrl'].invalid 
+                        && userInfoGroup.controls['nameCtrl'].touched">
+                        Wrong formatting
+                    </div>
                 </mat-form-field><br/>
                 <mat-form-field>
                     <input matInput formControlName="surnameCtrl" 
-                            required placeholder="Surname" 
-                            [disabled]="disableSurnameControl"/>
+                            required placeholder="Surname" />
+                    <div class="alert alert-danger"
+                        *ngIf="userInfoGroup.controls['surnameCtrl'].invalid
+                        && userInfoGroup.controls['surnameCtrl'].touched">
+                        Wrong formatting
+                    </div>
                 </mat-form-field><br/>
                 <mat-form-field>
                     <input matInput formControlName="countryCtrl" 
                             required placeholder="Country" />
+                    <div class="alert alert-danger"
+                        *ngIf="userInfoGroup.controls['countryCtrl'].invalid
+                        && userInfoGroup.controls['countryCtrl'].touched">
+                        Wrong formatting
+                    </div>
                 </mat-form-field><br/>
                 <mat-form-field>
                     <input matInput formControlName="cityCtrl" 
                             required placeholder="City" />
+                    <div class="alert alert-danger"
+                        *ngIf="userInfoGroup.controls['cityCtrl'].invalid
+                        && userInfoGroup.controls['cityCtrl'].touched">
+                        Wrong formatting
+                    </div>
                 </mat-form-field><br/>
                 <button mat-raised-button 
                         color="primary" 
                         matStepperNext
-                        [disabled]="buttonNextDisabled" 
+                        [disabled]="userInfoGroup.invalid" 
                         >Next</button>
             </form>
         </mat-step>

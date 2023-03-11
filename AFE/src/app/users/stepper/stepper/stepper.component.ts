@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, Output, TemplateRef, EventEmitter, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, Observable, Subject } from 'rxjs';
 import { UsersItem } from '../../shared/interfaces/interface';
+import { UsersService } from '../../shared/users.service';
 
 
 
@@ -20,28 +22,44 @@ export class StepperComponent implements OnInit {
   @Output() checkConditionFromChildComponent: EventEmitter<any> = new EventEmitter<any> ()
 
   constructor(
+    private userSrvc: UsersService
   ) {
 
   }
 
-  userInfoGroup = new FormGroup({
-    nameCtrl: new FormControl(''),
-    surnameCtrl: new FormControl(''),
-    countryCtrl: new FormControl(''),
-    cityCtrl: new FormControl(''),
+  userInfoGroup : FormGroup = new FormGroup({
+
+    nameCtrl: new FormControl('', [
+              Validators.required,
+              Validators.pattern("[A-Za-z]*")
+            ]),
+    surnameCtrl: new FormControl('', [
+                Validators.required,
+                Validators.pattern("[A-Za-z]*")
+            ]),
+    countryCtrl: new FormControl('', [
+                Validators.required,
+                Validators.pattern("[A-Za-z]*")
+            ]),
+    cityCtrl: new FormControl('', [
+                Validators.required,
+                Validators.pattern("[A-Za-z]*")
+            ]),
   });
   
-  newUser: any = [];
+  public newUser: any = [];
 
   ngOnInit(): void {
     
-    this.userInfoGroup.controls.nameCtrl.valueChanges.subscribe(item =>{
-      if(item && item?.length > 0){
+    this.userInfoGroup.controls['nameCtrl'].valueChanges
+      .pipe(
+        debounceTime(400)
+      )
+      .subscribe(item =>{
+        console.log(item)
         this.inputSubject.next(item);
-      }
       
     })
-    // this.userInfoGroup.controls.surnameCtrl.disable();
   }
 
 
@@ -57,7 +75,8 @@ export class StepperComponent implements OnInit {
                     city: cityCtrl.value
                   }
 
-    this.dataSource.push(this.newUser)
+    this.dataSource.push(this.newUser);
+    this.userSrvc.createUser(this.newUser);
     this.checkConditionFromChildComponent.emit(this.dataSource);
     
   }

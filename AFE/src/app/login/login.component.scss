@@ -1,3 +1,5 @@
+@import "../variables.scss";
+
 h2 {
     text-align: center;
     font-weight: normal;
@@ -23,3 +25,16 @@ button {
     float: right;
     width: 150px;
 }
+
+.login-main-container {
+    // justify-content: space-evenly;
+    // display: flex;
+    width: 50%;
+    margin: 15% auto;
+    border: 1px solid $black;
+    padding: $medium-padding;
+    border: 1px solid $black;
+}
+
+
+
