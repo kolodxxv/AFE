@@ -19,7 +19,7 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>№</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      <td mat-cell *matCellDef="let row" (click)="showUserDataById(row)">{{row.id}}</td>
     </ng-container>
 
     <!-- Name Column -->

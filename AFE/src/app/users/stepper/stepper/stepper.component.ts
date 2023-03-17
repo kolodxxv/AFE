@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, Output, TemplateRef, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, debounceTime, Observable, Subject, tap, map } from 'rxjs';
 import { UsersItem } from '../../shared/interfaces/interface';
 import { UsersService } from '../../shared/users.service';
 
@@ -17,7 +16,7 @@ export class StepperComponent implements OnInit {
   @Input() displayedColumns: any;
   @Input() inputSubject: Subject<any> = new Subject<any>();
 
-  @Input() dataSource: UsersItem[] = [];
+  @Input() dataSource: Observable<any> = new Observable<any>();
   @Input() buttonNextDisabled: boolean = false;
   @Output() checkConditionFromChildComponent: EventEmitter<any> = new EventEmitter<any> ()
 
@@ -56,7 +55,7 @@ export class StepperComponent implements OnInit {
         debounceTime(400)
       )
       .subscribe(item =>{
-        console.log(item)
+        // console.log(item)
         this.inputSubject.next(item);
       
     })
@@ -64,25 +63,34 @@ export class StepperComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.dataSource)
+    const copyOfData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+    this.dataSource.pipe(map(items => {copyOfData.next(items) })).subscribe();
+
+    // console.log(this.dataSource)
     // Passing new user info into the table
     const {nameCtrl, surnameCtrl, countryCtrl, cityCtrl } = this.userInfoGroup.controls
     this.newUser = {
-                    id: this.generateMaxId(this.dataSource),
+                    id: this.generateMaxId(copyOfData.getValue()),
                     name: nameCtrl.value, 
                     surname: surnameCtrl.value,
                     country: countryCtrl.value,
                     city: cityCtrl.value
                   }
 
-    this.dataSource.push(this.newUser);
-    this.userSrvc.createUser(this.newUser);
+    this.dataSource.pipe(
+      tap(userData => {
+        userData.push(this.newUser)
+      })
+    )
+    
+    
+    .subscribe()              
+    // this.dataSource.push(this.newUser);
     this.checkConditionFromChildComponent.emit(this.dataSource);
     
   }
 
   generateMaxId(data:any): number {
-    // console.log(data)
     let arrayId: number[] = [];
     for (let i = 0; i < data.length; i++) {
       // console.log(data[i].id)

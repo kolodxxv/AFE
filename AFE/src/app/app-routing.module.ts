@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent} from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { StepperComponent } from './users/stepper/stepper/stepper.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'users/:id', component: UserDetailsComponent },
   { path: 'stepper', component: StepperComponent}
 
 ];
