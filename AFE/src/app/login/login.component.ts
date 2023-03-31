@@ -32,6 +32,7 @@ export class LoginComponent {
     const { username, password } = this.loginForm.controls;
 
     if (this.loginSrvc.checkUserCredentials(username.value, password.value)) {
+      this.loginSrvc.storeUserName(username.value)
       this.router.navigate(['dashboard'])
       this.loginForm.reset()
     }

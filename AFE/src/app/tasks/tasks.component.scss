@@ -1,0 +1,45 @@
+.box {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-top: 100px;
+    padding-left: 30px;
+
+}
+
+.ticket {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    align-content: stretch;
+    margin: 10px;
+    text-indent: 5px;
+    text-align: left;
+    width: auto;
+    height: 170px;
+}
+
+mat-card-header {
+    background-color: gray;
+}
+
+mat-form-field {
+    margin-top: auto;
+}
+
+[aria-label="Done"] {
+    background-color: green;
+}
+
+[aria-label="QA"] {
+    background-color: red;
+}
+
+[aria-label="To DO"] {
+    background-color: gray;
+}
+
+[aria-label="Working On"] {
+    background-color: blue;
+}
+

@@ -23,12 +23,8 @@ export class UsersComponent implements AfterViewInit {
 
   public displayedColumns = ['id', 'name', 'surname', 'country', 'city'];
   public showWizard: any = true;
-  public disableSurnameControl: boolean = true;
-
   public inputSubject: Subject<any> = new Subject<any>;
-  public buttonNextDisabled: boolean = false;
   private destroy$: Subject<boolean> = new Subject<boolean>;
-
   public mySubject: Subject<number> = new Subject<number>;
 
 

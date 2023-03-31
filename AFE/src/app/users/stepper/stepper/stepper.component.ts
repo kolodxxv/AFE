@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, debounceTime, Observable, Subject, tap, map } from 'rxjs';
 import { UsersItem } from '../../shared/interfaces/interface';
 import { UsersService } from '../../shared/users.service';
+import { Utils } from 'src/app/utils/utils';
 
 
 
@@ -12,7 +13,7 @@ import { UsersService } from '../../shared/users.service';
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent implements OnInit {
-  @Input() disableSurnameControl: boolean = true;
+
   @Input() displayedColumns: any;
   @Input() inputSubject: Subject<any> = new Subject<any>();
 
@@ -21,43 +22,24 @@ export class StepperComponent implements OnInit {
   @Output() checkConditionFromChildComponent: EventEmitter<any> = new EventEmitter<any> ()
 
   constructor(
-    private userSrvc: UsersService
+    private userSrvc: UsersService,
+    private utils: Utils
   ) {
 
   }
 
-  userInfoGroup : FormGroup = new FormGroup({
 
-    nameCtrl: new FormControl('', [
-              Validators.required,
-              Validators.pattern("[A-Za-z]*")
-            ]),
-    surnameCtrl: new FormControl('', [
-                Validators.required,
-                Validators.pattern("[A-Za-z]*")
-            ]),
-    countryCtrl: new FormControl('', [
-                Validators.required,
-                Validators.pattern("[A-Za-z]*")
-            ]),
-    cityCtrl: new FormControl('', [
-                Validators.required,
-                Validators.pattern("[A-Za-z]*")
-            ]),
-  });
+  userInfoGroup: FormGroup = new FormGroup({});
   
   public newUser: any = [];
 
   ngOnInit(): void {
     
-    this.userInfoGroup.controls['nameCtrl'].valueChanges
-      .pipe(
-        debounceTime(400)
-      )
-      .subscribe(item =>{
-        // console.log(item)
-        this.inputSubject.next(item);
-      
+    const formControls: string[] = ['name', 'surname', 'country', 'city'];
+    this.userInfoGroup = this.utils.generateFormGroup(formControls);
+    //  @ts-ignore
+    this.userInfoGroup?.get('nameCtrl').valueChanges.subscribe(item =>{
+      this.inputSubject.next(item);
     })
   }
 
@@ -66,7 +48,6 @@ export class StepperComponent implements OnInit {
     const copyOfData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
     this.dataSource.pipe(map(items => {copyOfData.next(items) })).subscribe();
 
-    // console.log(this.dataSource)
     // Passing new user info into the table
     const {nameCtrl, surnameCtrl, countryCtrl, cityCtrl } = this.userInfoGroup.controls
     this.newUser = {
@@ -82,10 +63,7 @@ export class StepperComponent implements OnInit {
         userData.push(this.newUser)
       })
     )
-    
-    
     .subscribe()              
-    // this.dataSource.push(this.newUser);
     this.checkConditionFromChildComponent.emit(this.dataSource);
     
   }
@@ -93,13 +71,8 @@ export class StepperComponent implements OnInit {
   generateMaxId(data:any): number {
     let arrayId: number[] = [];
     for (let i = 0; i < data.length; i++) {
-      // console.log(data[i].id)
       arrayId.push(data[i].id)
-
-      
     }
-    // console.log(arrayId)
-    // console.log(arrayId[arrayId.length])
     return arrayId[arrayId.length - 1] + 1
   }
   

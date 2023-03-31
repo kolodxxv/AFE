@@ -14,4 +14,8 @@ export class LoginService {
   public checkUserCredentials(username: string, password: string) : boolean {
     return username != '' && password != '';
   }
+
+  public storeUserName(username: string) {
+    localStorage.setItem('username', username);
+  }
 }

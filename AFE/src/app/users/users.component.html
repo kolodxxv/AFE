@@ -3,11 +3,9 @@
         (click)="toggleWizard(showWizard)"
         >Add User</button>
 <ng-container *ngIf="!showWizard">
-  <app-stepper [dataSource]="dataSource" 
-              [disableSurnameControl]="disableSurnameControl" 
+  <app-stepper [dataSource]="dataSource"  
               [displayedColumns]="displayedColumns"
               [inputSubject]="inputSubject" 
-              [buttonNextDisabled]="buttonNextDisabled"
               (checkConditionFromChildComponent)="checkConditionFromChildComponent($event)"
               ></app-stepper>
 </ng-container>
