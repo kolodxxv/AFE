@@ -1,5 +1,7 @@
 <div class='main'>
-    <div class='box'
-        *ngFor='let item of items; let i = index'
-        [routerLink]="['/users']">{{ item }}</div>
+    <ng-container *ngFor="let item of items; let i = index">
+        <div class='box'
+        (click)="redirectToPageByItemName(item)"
+        >{{ item }}</div>
+    </ng-container>
 </div>
