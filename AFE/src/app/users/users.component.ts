@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { UsersItem } from './shared/interfaces/interface';
 import { UsersService } from './shared/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar'
@@ -27,8 +27,6 @@ export class UsersComponent implements AfterViewInit {
   public buttonNextDisabled: boolean = false;
 
 
-
-  
   constructor(
     private usersSvrc: UsersService,
     private snackBar: MatSnackBar
