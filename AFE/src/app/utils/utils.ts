@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Form, FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Injectable({
     providedIn: 'root'
@@ -7,14 +7,14 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 export class Utils {
 
-    public generatedForm: FormGroup = new FormGroup({}); 
-    public generateFormGroup(formParams: string[]): any {
-        formParams.forEach(item => {
-            this.generatedForm.addControl(`${item}Ctrl`, new FormControl('', [
-                Validators.required,
-                Validators.pattern("[A-Za-z]*")
-            ]));
-        })
-        return this.generatedForm;
-    }
+  public generatedForm: FormGroup = new FormGroup({}); 
+  public generateFormGroup(formParams: string[]): FormGroup {
+    formParams.forEach(item => {
+      this.generatedForm.addControl(`${item}Ctrl`, new FormControl('', [
+          Validators.required,
+          Validators.pattern("[A-Za-z]*")
+      ]));
+    })
+    return this.generatedForm;
+  }
 }

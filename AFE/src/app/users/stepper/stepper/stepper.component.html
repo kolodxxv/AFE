@@ -1,63 +1,62 @@
 <ng-container>
-    <mat-stepper [linear]="true">
-        <mat-step label="User" completed="true">
-            <form [formGroup]="userInfoGroup">
-                <mat-form-field>
-                    <input matInput formControlName="nameCtrl" 
-                            required placeholder="Name" />
-                    <div class="alert alert-danger"
-                        *ngIf="userInfoGroup.controls['nameCtrl'].invalid 
-                        && userInfoGroup.controls['nameCtrl'].touched">
-                        Wrong formatting
-                    </div>
-                </mat-form-field><br/>
-                <mat-form-field>
-                    <input matInput formControlName="surnameCtrl" 
-                            required placeholder="Surname" />
-                    <div class="alert alert-danger"
-                        *ngIf="userInfoGroup.controls['surnameCtrl'].invalid
-                        && userInfoGroup.controls['surnameCtrl'].touched">
-                        Wrong formatting
-                    </div>
-                </mat-form-field><br/>
-                <mat-form-field>
-                    <input matInput formControlName="countryCtrl" 
-                            required placeholder="Country" />
-                    <div class="alert alert-danger"
-                        *ngIf="userInfoGroup.controls['countryCtrl'].invalid
-                        && userInfoGroup.controls['countryCtrl'].touched">
-                        Wrong formatting
-                    </div>
-                </mat-form-field><br/>
-                <mat-form-field>
-                    <input matInput formControlName="cityCtrl" 
-                            required placeholder="City" />
-                    <div class="alert alert-danger"
-                        *ngIf="userInfoGroup.controls['cityCtrl'].invalid
-                        && userInfoGroup.controls['cityCtrl'].touched">
-                        Wrong formatting
-                    </div>
-                </mat-form-field><br/>
-                <button mat-raised-button 
-                        color="primary" 
-                        matStepperNext
-                        [disabled]="userInfoGroup.invalid" 
-                        >Next</button>
-            </form>
-        </mat-step>
-        <mat-step label="Step2" completed="false">
-            <div>
-                <p>Name: {{this.userInfoGroup.controls['nameCtrl'].value}}</p>
-                <p>Surname: {{this.userInfoGroup.controls['surnameCtrl'].value}}</p>
-                <p>Country: {{this.userInfoGroup.controls['countryCtrl'].value}}</p>
-                <p>City: {{this.userInfoGroup.controls['cityCtrl'].value}}</p>
-                <!-- TODO: Pushing the array into the users list-->
-                <button mat-raised-button 
-                        color="primary"
-                        (click)="onSubmit()"
-                        >Submit</button>
+  <mat-stepper [linear]="true">
+    <mat-step label="User" completed="true">
+      <form [formGroup]="userInfoGroup">
+        <mat-form-field>
+            <input matInput formControlName="nameCtrl" 
+                    required placeholder="Name" />
+            <div class="alert alert-danger"
+                *ngIf="userInfoGroup.controls['nameCtrl'].invalid 
+                && userInfoGroup.controls['nameCtrl'].touched">
+                Wrong formatting
             </div>
-        </mat-step>
-    </mat-stepper>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <input matInput formControlName="surnameCtrl" 
+                    required placeholder="Surname" />
+            <div class="alert alert-danger"
+                *ngIf="userInfoGroup.controls['surnameCtrl'].invalid
+                && userInfoGroup.controls['surnameCtrl'].touched">
+                Wrong formatting
+            </div>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <input matInput formControlName="countryCtrl" 
+                    required placeholder="Country" />
+            <div class="alert alert-danger"
+                *ngIf="userInfoGroup.controls['countryCtrl'].invalid
+                && userInfoGroup.controls['countryCtrl'].touched">
+                Wrong formatting
+            </div>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <input matInput formControlName="cityCtrl" 
+                    required placeholder="City" />
+            <div class="alert alert-danger"
+                *ngIf="userInfoGroup.controls['cityCtrl'].invalid
+                && userInfoGroup.controls['cityCtrl'].touched">
+                Wrong formatting
+            </div>
+        </mat-form-field><br/>
+        <button mat-raised-button 
+                color="primary" 
+                matStepperNext
+                [disabled]="userInfoGroup.invalid" 
+                >Next</button>
+      </form>
+    </mat-step>
+    <mat-step label="Step2" completed="false">
+      <div>
+          <p>Name: {{this.userInfoGroup.controls['nameCtrl'].value}}</p>
+          <p>Surname: {{this.userInfoGroup.controls['surnameCtrl'].value}}</p>
+          <p>Country: {{this.userInfoGroup.controls['countryCtrl'].value}}</p>
+          <p>City: {{this.userInfoGroup.controls['cityCtrl'].value}}</p>
+          <!-- TODO: Pushing the array into the users list-->
+          <button mat-raised-button 
+                  color="primary"
+                  (click)="onSubmit()"
+                  >Submit</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </ng-container>
-<!-- <ng-template *ngTemplateOutlet="aFunct"></ng-template> -->

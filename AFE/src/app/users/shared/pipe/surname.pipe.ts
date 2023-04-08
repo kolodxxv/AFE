@@ -4,8 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'surname'
 })
 export class SurnamePipe implements PipeTransform {
-
-  transform(value: string, ...args: unknown[]): unknown {
+  transform(value: string): string {
     return `${value[0]}****${value[value.length - 1]}`;
   }
 

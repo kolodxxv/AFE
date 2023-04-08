@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TasksService } from './service/tasks-service.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { tap } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-tasks',
@@ -12,9 +11,9 @@ import { tap } from 'rxjs';
 export class TasksComponent {
 
 public storageName = localStorage.getItem('username');
-public dataSource: any;
-public classControl = new FormControl();
+public dataSource;
 
+public classControl = new FormControl();
 public statusList = ['To DO', 'QA', 'Done', 'Working On']
 public selectedValue: any;
 

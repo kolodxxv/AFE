@@ -1,14 +1,13 @@
-<div class='main'>
-    <div class='box'
-        *ngFor='let item of items; let i = index'
-        (click)="boxControlMethod()"
-        [routerLink]="i === 2 ? '/boxControlMethod' : '/'+item.toLowerCase()">{{ item }}
-    </div>
-    <div class="invzBox" 
-        *ngIf="boxState===true">
-        <mat-slide-toggle
-            (change)="darkMode($event)"
-        >Dark Mode</mat-slide-toggle>
+<div class="main">
+    <ng-container *ngFor="let item of items; let i = index">
+        <div class="box"
+            (click)="boxControlMethod(item)"
+           >{{ item }}
+        </div>
+    </ng-container>
+    
+    <div class="invzBox" *ngIf="boxState">
+        <mat-slide-toggle (change)="darkMode()">Dark Mode</mat-slide-toggle>
     </div>
 </div>
 

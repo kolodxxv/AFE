@@ -2,12 +2,10 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { BehaviorSubject, filter, Observable, Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { UsersItem } from './shared/interfaces/interface';
 import { UsersService } from './shared/users.service';
 import { Router } from '@angular/router';
-import { map, catchError } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-users',
@@ -25,13 +23,6 @@ export class UsersComponent implements AfterViewInit {
   public showWizard: any = true;
   public inputSubject: Subject<any> = new Subject<any>;
   private destroy$: Subject<boolean> = new Subject<boolean>;
-  public mySubject: Subject<number> = new Subject<number>;
-
-
-
-
-  public testArr: any[] = [1, 2, 3, 4, 5, 6]
-
   
   constructor(
     private usersSvrc: UsersService,
@@ -42,14 +33,9 @@ export class UsersComponent implements AfterViewInit {
     
   }
 
-  ngOnInit() {
-    
-  }
-    
-
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort
-      }
+  }
 
   public toggleWizard (e: boolean): void {
     this.showWizard = !e;
@@ -59,7 +45,7 @@ export class UsersComponent implements AfterViewInit {
     this.router.navigate([`users/${userData.id}`])
   }
 
-  public checkConditionFromChildComponent(tableData: any) : void {
+  public checkConditionFromChildComponent(tableData: string[]) : void {
     this.dataSource = tableData;
     this.showWizard = true;
   }
@@ -68,6 +54,4 @@ export class UsersComponent implements AfterViewInit {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
-
-  
 }

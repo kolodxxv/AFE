@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../shared/users.service';
-import { map, tap, filter } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { UsersItem } from '../shared/interfaces/interface';
 
 @Component({

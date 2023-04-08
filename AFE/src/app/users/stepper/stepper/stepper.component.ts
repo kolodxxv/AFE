@@ -5,13 +5,12 @@ import { UsersItem } from '../../shared/interfaces/interface';
 import { UsersService } from '../../shared/users.service';
 import { Utils } from 'src/app/utils/utils';
 
-
-
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss']
 })
+
 export class StepperComponent implements OnInit {
 
   @Input() displayedColumns: any;
@@ -21,17 +20,14 @@ export class StepperComponent implements OnInit {
   @Input() buttonNextDisabled: boolean = false;
   @Output() checkConditionFromChildComponent: EventEmitter<any> = new EventEmitter<any> ()
 
+  public userInfoGroup: FormGroup = new FormGroup({});
+  public newUser: any = [];
+
   constructor(
     private userSrvc: UsersService,
     private utils: Utils
   ) {
-
   }
-
-
-  userInfoGroup: FormGroup = new FormGroup({});
-  
-  public newUser: any = [];
 
   ngOnInit(): void {
     
@@ -44,19 +40,19 @@ export class StepperComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  public onSubmit(): void {
     const copyOfData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
     this.dataSource.pipe(map(items => {copyOfData.next(items) })).subscribe();
 
     // Passing new user info into the table
     const {nameCtrl, surnameCtrl, countryCtrl, cityCtrl } = this.userInfoGroup.controls
     this.newUser = {
-                    id: this.generateMaxId(copyOfData.getValue()),
-                    name: nameCtrl.value, 
-                    surname: surnameCtrl.value,
-                    country: countryCtrl.value,
-                    city: cityCtrl.value
-                  }
+      id: this.generateMaxId(copyOfData.getValue()),
+      name: nameCtrl.value, 
+      surname: surnameCtrl.value,
+      country: countryCtrl.value,
+      city: cityCtrl.value
+      }
 
     this.dataSource.pipe(
       tap(userData => {
@@ -68,7 +64,7 @@ export class StepperComponent implements OnInit {
     
   }
 
-  generateMaxId(data:any): number {
+  private generateMaxId(data:any): number {
     let arrayId: number[] = [];
     for (let i = 0; i < data.length; i++) {
       arrayId.push(data[i].id)
