@@ -22,6 +22,7 @@ export interface UsersItem {
   }
   
   
+  
   export const USERS_DATA: UsersItem[] = [
     {id: 1, name: 'John', surname: 'Doe', country: CountryEnum.US, city: 'Texas'},
     {id: 2, name: 'Boris', surname: 'Upor', country: CountryEnum.MD, city: 'Bachoi'},

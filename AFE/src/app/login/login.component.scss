@@ -8,8 +8,18 @@ input, label {
 }
 
 input {
-    width: 75%;
+    width: 95%;
     padding: 4px 15px;
     margin: 8px 0;
+    margin-left: 30px;
     box-sizing: border-box;
+    border: none;
+    border-bottom: solid 0.5px gray;
+}
+
+button {
+    // position: relative;
+    // left: 650px;
+    float: right;
+    width: 150px;
 }
