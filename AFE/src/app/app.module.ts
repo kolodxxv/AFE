@@ -24,6 +24,7 @@ import { UsersComponent } from './users/users.component';
 import { StepperComponent } from './users/stepper/stepper/stepper.component';
 import { SurnamePipe } from './users/shared/pipe/surname.pipe';
 import { ChangeColorDirective } from './users/shared/directive/change-color.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -57,7 +58,8 @@ import { ChangeColorDirective } from './users/shared/directive/change-color.dire
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule
    
  
     

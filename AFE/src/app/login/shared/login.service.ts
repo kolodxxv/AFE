@@ -1,13 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { developEndpoint } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  public checkUserCredentials(username: string, password: string) : boolean {
-    return username != '' && password != '';
+  public checkUserCredentials() : Observable<any> {
+    return this.http.get(`${developEndpoint}/login`);
   }
 }
