@@ -5,5 +5,3 @@ export interface UsersItem {
     country: string;
     city: string;
   }
-  
-  
