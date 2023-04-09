@@ -5,8 +5,9 @@ import { MatTable } from '@angular/material/table';
 import { BehaviorSubject, filter, Observable, Subject, takeUntil } from 'rxjs';
 import { UsersItem } from './shared/interfaces/interface';
 import { UsersService } from './shared/users.service';
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { Router } from '@angular/router';
 import { map, catchError } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-users',
@@ -38,50 +39,28 @@ export class UsersComponent implements AfterViewInit {
   
   constructor(
     private usersSvrc: UsersService,
-    private snackBar: MatSnackBar
+    private router: Router
+    
   ) {
-   
+   this.dataSource = this.usersSvrc.getListOfUsers();
     
   }
 
   ngOnInit() {
-    this.usersSvrc.getListOfUsers()
-      .pipe(
-        map(items => {
-          return items.filter((val: any) => {
-            return val.id != 0;
-          })
-        }),
-        map(data => this.dataSource = data),
-        takeUntil(this.destroy$)
-      )
-      .subscribe()
+    
   }
     
 
-
-
   ngAfterViewInit(): void {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-    // this.table.dataSource = this.dataSource;
-
-    this.inputSubject
-      .pipe(
-        takeUntil(this.destroy$),
-      )
-      // .subscribe(val =>{
-      //   val.match(/[0-9]/) ? (
-      //     this.snackBar.open('Error'),
-      //     this.buttonNextDisabled = true
-      //   ) : (
-      //       this.snackBar.dismiss(),
-      //       this.buttonNextDisabled = false)
-      //   });
+    this.dataSource.sort = this.sort
       }
 
   public toggleWizard (e: boolean): void {
     this.showWizard = !e;
+  }
+
+  public showUserDataById(userData: any): void {
+    this.router.navigate([`users/${userData.id}`])
   }
 
   public checkConditionFromChildComponent(tableData: any) : void {

@@ -1,18 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { developEndpoint } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor() { }
 
-  public checkUserCredentials() : Observable<any> {
-    return this.http.get(`${developEndpoint}/login`);
+  // TODO: Reactive Forms 
+
+  public checkUserCredentials(username: string, password: string) : boolean {
+    return username != '' && password != '';
   }
 }

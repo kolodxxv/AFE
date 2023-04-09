@@ -25,22 +25,15 @@ export class LoginComponent {
   ) { }
 
   ngOnInit(): void {
-    const testObj: any = { id: 1, value: 'test', optionalOperator: 'Optional'};
-
-    console.log(Object.keys(testObj));
-    console.log(Object.values(testObj));
+    
   }
 
   onSubmit(): void {
-    // Process login data here
-    // const { username, password } = this.loginForm.controls;
-    this.loginSrvc.checkUserCredentials()
-    .pipe(
-      tap(() => this.router.navigate(['dashboard']))
-    )
-    .subscribe((token) => {
-        localStorage.setItem('token', token)
-        this.loginForm.reset();
-      })
+    const { username, password } = this.loginForm.controls;
+
+    if (this.loginSrvc.checkUserCredentials(username.value, password.value)) {
+      this.router.navigate(['dashboard'])
+      this.loginForm.reset()
+    }
   }
 }

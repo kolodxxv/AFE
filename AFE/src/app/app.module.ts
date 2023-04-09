@@ -24,7 +24,8 @@ import { UsersComponent } from './users/users.component';
 import { StepperComponent } from './users/stepper/stepper/stepper.component';
 import { SurnamePipe } from './users/shared/pipe/surname.pipe';
 import { ChangeColorDirective } from './users/shared/directive/change-color.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { UsersService } from './users/shared/users.service';
 
 
 
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     StepperComponent,
     SurnamePipe,
     ChangeColorDirective,
+    UserDetailsComponent,
     
     
 
@@ -59,13 +61,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
-    HttpClientModule
+    
    
  
     
     
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
