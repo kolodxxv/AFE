@@ -1,7 +1,13 @@
-<div class='main'>
+<div class="main">
     <ng-container *ngFor="let item of items; let i = index">
-        <div class='box'
-        (click)="redirectToPageByItemName(item)"
-        >{{ item }}</div>
+        <div class="box"
+            (click)="boxControlMethod(item)"
+           >{{ item }}
+        </div>
     </ng-container>
+    
+    <div class="invzBox" *ngIf="boxState">
+        <mat-slide-toggle (change)="darkMode()">Dark Mode</mat-slide-toggle>
+    </div>
 </div>
+

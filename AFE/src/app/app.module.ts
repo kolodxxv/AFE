@@ -14,7 +14,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { AppComponent } from './app.component';
@@ -26,6 +28,7 @@ import { SurnamePipe } from './users/shared/pipe/surname.pipe';
 import { ChangeColorDirective } from './users/shared/directive/change-color.directive';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { UsersService } from './users/shared/users.service';
+import { TasksComponent } from './tasks/tasks.component';
 
 
 
@@ -40,6 +43,7 @@ import { UsersService } from './users/shared/users.service';
     SurnamePipe,
     ChangeColorDirective,
     UserDetailsComponent,
+    TasksComponent,
     
     
 
@@ -60,7 +64,9 @@ import { UsersService } from './users/shared/users.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatSelectModule
     
    
  

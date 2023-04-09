@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from './shared/login.service';
-import { of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-login',
@@ -24,14 +21,11 @@ export class LoginComponent {
     private loginSrvc: LoginService
   ) { }
 
-  ngOnInit(): void {
-    
-  }
-
-  onSubmit(): void {
+  public onSubmit(): void {
     const { username, password } = this.loginForm.controls;
 
     if (this.loginSrvc.checkUserCredentials(username.value, password.value)) {
+      this.loginSrvc.storeUserName(username.value)
       this.router.navigate(['dashboard'])
       this.loginForm.reset()
     }
