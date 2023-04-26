@@ -8,5 +8,10 @@
     "username": "Имя",
     "password": "Пароль",
     "dashboard": "Меню",
-    "home": "Выйти"
+    "home": "Выйти",
+    "name": "Имя",
+    "surname": "Фамилия",
+    "country": "Страна",
+    "city": "Город",
+    "addUser": "Добавить"
 }

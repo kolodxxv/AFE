@@ -8,6 +8,12 @@
     "username": "Username",
     "password": "Password",
     "dashboard": "Dashboard",
-    "home": "Logout"
+    "home": "Logout",
+    "name": "Name",
+    "surname": "Surname",
+    "country": "Country",
+    "city": "City",
+    "addUser": "Add User"
+
 
 }
