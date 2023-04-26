@@ -1,0 +1,13 @@
+{
+    "login": "Login",
+    "selectLanguage": "Language",
+    "users": "Users",
+    "tasks": "Tasks",
+    "settings": "Settings",
+    "darkMode": "Dark Mode",
+    "username": "Username",
+    "password": "Password",
+    "dashboard": "Dashboard",
+    "home": "Logout"
+
+}

@@ -1,12 +1,20 @@
 <div class="login-main-container">
-  <h2>Login</h2>
+  <h2>{{"login" | transloco}}</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="name-input">
-        <input id="username" type="text" formControlName="username" placeholder="Username">
+        <input id="username" type="text" formControlName="username" [placeholder]="'username' | transloco">
     </div>
     <div class="second-input">
-        <input id="password" type="password" formControlName="password" placeholder="Password">
+        <input id="password" type="password" formControlName="password" [placeholder]="'password' | transloco">
     </div>
-    <button mat-button class="button">Login</button>
+    <button mat-button class="button">{{"login" | transloco}}</button>
+    <!-- <mat-form-field>
+      <mat-label>{{ "selectLanguage" | transloco}}</mat-label>
+      <mat-select
+        formControlName="language">
+        <mat-option *ngFor="let lang of languages"
+                    [value]="lang">{{ lang.displayLang }}</mat-option>
+      </mat-select>
+    </mat-form-field> -->
   </form>
 </div>
