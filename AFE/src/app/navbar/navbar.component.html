@@ -1,0 +1,19 @@
+<mat-toolbar>
+    <span>Navbar</span>
+    <mat-form-field [formGroup]="loginForm" appearance="outline">
+      <mat-label>{{ "selectLanguage" | transloco }}</mat-label>
+      <mat-select
+        formControlName="language">
+        <mat-option *ngFor="let lang of languages"
+                    [value]="lang" id="lang">{{ lang.displayLang }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <a mat-button [routerLink]="'dashboard'" *ngIf="!(router.url ==='/login' 
+      || router.url === '/dashboard')">{{ "dashboard" | transloco }}</a>
+    <a mat-button [routerLink]="'users'" *ngIf="!(router.url ==='/login' 
+      || router.url === '/dashboard' || router.url === '/users')">{{ "users" | transloco }}</a>
+    <a mat-button [routerLink]="'tasks'" *ngIf="!(router.url ==='/login' 
+      || router.url === '/dashboard' || router.url === '/tasks')">{{ "tasks" | transloco }}</a>
+    <a mat-button [routerLink]="'login'" *ngIf="router.url !=='/login'" 
+      id="login">{{ "home" | transloco }}</a>
+</mat-toolbar>
