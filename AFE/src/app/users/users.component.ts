@@ -6,6 +6,8 @@ import { Subject } from 'rxjs';
 import { UsersItem } from './shared/interfaces/interface';
 import { UsersService } from './shared/users.service';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
+import { LanguageService } from '../language.service';
 
 @Component({
   selector: 'app-users',
@@ -26,7 +28,9 @@ export class UsersComponent implements AfterViewInit {
   
   constructor(
     private usersSvrc: UsersService,
-    private router: Router
+    private router: Router,
+    private readonly langService: LanguageService,
+    private readonly translocoService: TranslocoService
     
   ) {
    this.dataSource = this.usersSvrc.getListOfUsers();

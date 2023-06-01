@@ -1,7 +1,7 @@
 <button class="button"
         *ngIf="showWizard"
         (click)="toggleWizard(showWizard)"
-        >Add User</button>
+        >{{ "addUser" | transloco }}</button>
 <ng-container *ngIf="!showWizard">
   <app-stepper [dataSource]="dataSource"  
               [displayedColumns]="displayedColumns"
@@ -22,25 +22,25 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "name" | transloco }}</th>
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
     </ng-container>
 
     <!-- Surname Column -->
     <ng-container matColumnDef="surname">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Surname</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "surname" | transloco }}</th>
       <td mat-cell *matCellDef="let row">{{row.surname | surname}}</td>
     </ng-container>
 
     <!-- Country Column -->
     <ng-container matColumnDef="country">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "country" | transloco }}</th>
       <td mat-cell *matCellDef="let row">{{row.country}}</td>
     </ng-container>
 
     <!-- City Column -->
     <ng-container matColumnDef="city">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "city" | transloco }}</th>
       <td mat-cell *matCellDef="let row">{{row.city}}</td>
     </ng-container>
 

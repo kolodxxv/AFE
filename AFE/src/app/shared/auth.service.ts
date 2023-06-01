@@ -9,7 +9,7 @@ export class AuthService {
 
   IsLoggedIn() {
     if (localStorage.getItem('username') === 'dev' || localStorage.getItem('username') === 'tester') {
-      return !!localStorage.getItem('token')
+      return !!localStorage.getItem('username')
     }
    else {
     return false;

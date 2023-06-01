@@ -22,20 +22,23 @@ export class LoginComponent implements OnInit {
     language: ''
   });
 
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private loginSrvc: LoginService,
     private readonly languageService: LanguageService
-  ) { }
+    
+  ) {}
 
   ngOnInit(): void {
+    
     const { language } = this.loginForm.controls;
 
     this.languages.forEach(item => {
       if (item.id === this.languageService.getLanguage()) {
         language.setValue(item);
-      }
+      } 
     })
 
     language.valueChanges.subscribe(lang => {
