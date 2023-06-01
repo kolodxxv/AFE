@@ -14,8 +14,9 @@ export class LanguageService {
         const language: string | null = localStorage.getItem("lang");
         if (language) {
             return language
-        } 
-        return JSON.parse("en")
+        }
+        location.reload() 
+        return localStorage.setItem("lang", "en");
     }
 
 }
