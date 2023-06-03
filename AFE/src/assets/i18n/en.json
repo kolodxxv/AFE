@@ -13,7 +13,10 @@
     "surname": "Surname",
     "country": "Country",
     "city": "City",
-    "addUser": "Add User"
-
+    "addUser": "Add User",
+    "user": "User",
+    "next": "Next",
+    "step2": "Step 2",
+    "submit": "Submit"
 
 }

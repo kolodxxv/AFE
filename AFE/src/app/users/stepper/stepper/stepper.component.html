@@ -1,10 +1,10 @@
 <ng-container>
   <mat-stepper [linear]="true">
-    <mat-step label="User" completed="true">
+    <mat-step label="{{'user' | transloco}}" completed="true">
       <form [formGroup]="userInfoGroup">
         <mat-form-field>
             <input matInput formControlName="nameCtrl" 
-                    required placeholder="Name" />
+                    required placeholder="{{'name' | transloco}}" />
             <div class="alert alert-danger"
                 *ngIf="userInfoGroup.controls['nameCtrl'].invalid 
                 && userInfoGroup.controls['nameCtrl'].touched">
@@ -13,7 +13,7 @@
         </mat-form-field><br/>
         <mat-form-field>
             <input matInput formControlName="surnameCtrl" 
-                    required placeholder="Surname" />
+                    required placeholder="{{'surname' | transloco}}" />
             <div class="alert alert-danger"
                 *ngIf="userInfoGroup.controls['surnameCtrl'].invalid
                 && userInfoGroup.controls['surnameCtrl'].touched">
@@ -22,7 +22,7 @@
         </mat-form-field><br/>
         <mat-form-field>
             <input matInput formControlName="countryCtrl" 
-                    required placeholder="Country" />
+                    required placeholder="{{'country' | transloco}}" />
             <div class="alert alert-danger"
                 *ngIf="userInfoGroup.controls['countryCtrl'].invalid
                 && userInfoGroup.controls['countryCtrl'].touched">
@@ -31,7 +31,7 @@
         </mat-form-field><br/>
         <mat-form-field>
             <input matInput formControlName="cityCtrl" 
-                    required placeholder="City" />
+                    required placeholder="{{'city' | transloco}}" />
             <div class="alert alert-danger"
                 *ngIf="userInfoGroup.controls['cityCtrl'].invalid
                 && userInfoGroup.controls['cityCtrl'].touched">
@@ -42,10 +42,10 @@
                 color="primary" 
                 matStepperNext
                 [disabled]="userInfoGroup.invalid" 
-                >Next</button>
+                >{{'next' | transloco}}</button>
       </form>
     </mat-step>
-    <mat-step label="Step2" completed="false">
+    <mat-step label="{{'step2' | transloco}}" completed="false">
       <div>
           <p>Name: {{this.userInfoGroup.controls['nameCtrl'].value}}</p>
           <p>Surname: {{this.userInfoGroup.controls['surnameCtrl'].value}}</p>
@@ -55,7 +55,7 @@
           <button mat-raised-button 
                   color="primary"
                   (click)="onSubmit()"
-                  >Submit</button>
+                  >{{'submit' | transloco}}</button>
       </div>
     </mat-step>
   </mat-stepper>
