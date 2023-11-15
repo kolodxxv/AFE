@@ -3,25 +3,33 @@
 
 <?php 
     try {
-         // create table if non exists
-        $sql = "CREATE TABLE IF NOT EXISTS `users` (
-        `id` INT AUTO_INCREMENT NOT NULL,
-        `name` varchar(255) NOT NULL, 
-        `surname` varchar(255) NOT NULL, 
-        `country` varchar(255) NOT NULL, 
-        `city` varchar(255) NOT NULL, 
-        PRIMARY KEY (id) 
-        )";
+        // check if table exists
+        $check = "SELECT * FROM users";
+        $result = $conn->query($check);
 
-        $conn->exec($sql);
-        echo "Table users created sucessfully";
-        // TODO: check if table exists;
-
+        if ($result->rowCount() > 0) {
+            echo "Table found, proceeding \n";
+        } else {
+             // create table if non exists
+            $sql = "CREATE TABLE IF NOT EXISTS `users` (
+                `id` INT AUTO_INCREMENT NOT NULL,
+                `name` varchar(255) NOT NULL, 
+                `surname` varchar(255) NOT NULL, 
+                `country` varchar(255) NOT NULL, 
+                `city` varchar(255) NOT NULL, 
+                PRIMARY KEY (id) 
+                )";
+        
+                $conn->exec($sql);
+                echo "Table users created sucessfully";
+            }
+    
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e;
         $conn = null;
     }
-
+        
+    // this class is required in order to print data
     class TableRows extends RecursiveIteratorIterator {
         function __construct($it) {
             parent::__construct($it, self::LEAVES_ONLY);
@@ -40,6 +48,7 @@
         }
     }
 
+    // fetching data from table 
     try {
         $stmt = $conn->prepare("SELECT id, name, surname, country, city FROM users");
         $stmt->execute();
