@@ -3,11 +3,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+
 import { UsersItem } from './shared/interfaces/interface';
 import { UsersService } from './shared/users.service';
-import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { LanguageService } from '../language.service';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-users',
@@ -30,10 +32,12 @@ export class UsersComponent implements AfterViewInit {
     private usersSvrc: UsersService,
     private router: Router,
     private readonly langService: LanguageService,
-    private readonly translocoService: TranslocoService
+    private readonly translocoService: TranslocoService,
+    private dataSrvc: DataService
     
   ) {
-   this.dataSource = this.usersSvrc.getListOfUsers();
+  //  this.dataSource = this.usersSvrc.getListOfUsers();
+   this.dataSource = this.dataSrvc.getData()
     
   }
 
