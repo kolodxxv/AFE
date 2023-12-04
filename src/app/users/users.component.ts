@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { UsersItem } from './shared/interfaces/interface';
-import { UsersService } from './shared/users.service';
+
 import { TranslocoService } from '@ngneat/transloco';
 import { LanguageService } from '../language.service';
 import { DataService } from '../shared/data.service';
@@ -14,36 +14,35 @@ import { DataService } from '../shared/data.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
-  providers: [UsersService]
+  styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<UsersItem>;
+export class UsersComponent {
   public dataSource: any;
-
-  public displayedColumns = ['id', 'name', 'surname', 'country', 'city'];
+  public displayedColumns: string[] = ['id', 'name', 'surname', 'country', 'city'];
   public showWizard: any = true;
   public inputSubject: Subject<any> = new Subject<any>;
   private destroy$: Subject<boolean> = new Subject<boolean>;
+
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatTable) table!: MatTable<UsersItem>;
   
   constructor(
-    private usersSvrc: UsersService,
     private router: Router,
     private readonly langService: LanguageService,
     private readonly translocoService: TranslocoService,
     private dataSrvc: DataService
     
-  ) {
-  //  this.dataSource = this.usersSvrc.getListOfUsers();
-   this.dataSource = this.dataSrvc.getData()
-    
+  ) { }
+
+  ngOnInit() {
+    this.dataSrvc.getData()
+      .subscribe((res: any) => {
+        this.dataSource = res.data;
+        this.dataSource.sort = this.sort
+    });
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort
-  }
 
   public toggleWizard (e: boolean): void {
     this.showWizard = !e;
@@ -54,7 +53,7 @@ export class UsersComponent implements AfterViewInit {
   }
 
   public checkConditionFromChildComponent(tableData: string[]) : void {
-    this.dataSource = tableData;
+    // this.dataSource = tableData;
     this.showWizard = true;
   }
 

@@ -17,13 +17,46 @@
 
         public function read() {
             // create query 
-            $query = "SELECT id, name, surname, country, city FROM " .$this->table;
+            $query = 'SELECT 
+                id, 
+                name,
+                surname, 
+                country, 
+                city 
+                FROM 
+                ' .$this->table;
 
             $stmt = $this->conn->prepare($query);
 
             $stmt->execute();
 
             return $stmt;
+        }
+
+        public function read_single() {
+            $query = 'SELECT
+                id,
+                name,
+                surname,
+                country,
+                city
+                FROM
+                ' .$this->table . '
+                WHERE id = ? LIMIT 1';
+
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+            // binding param
+            $stmt->bindParam(1, $this->id);
+            // execute the query
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $this->name = $row['name'];
+            $this->surname = $row['surname'];
+            $this->country = $row['country'];
+            $this->city = $row['city'];
+
         }
     }
 

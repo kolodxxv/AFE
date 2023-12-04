@@ -14,8 +14,9 @@ export class DataService {
         private http: HttpClient
     ) {}
 
-    getData()  {
-        return this.http.get('users.php')
+    getData() {
+        return this.http.get(
+            'http://127.0.0.1/api/read.php')
     }
 
 }
