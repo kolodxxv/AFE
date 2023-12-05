@@ -12,6 +12,7 @@ This is a CRM project that has a users table, login system, and a separated task
 
 * Angular
 * PHP
+* MySql
 
 ## Installation
 
