@@ -12,14 +12,14 @@ This is a CRM project that has a users table, login system, and a separated task
 
 * Angular
 * PHP
-* MySql
+* MySQL
 
 ## Installation
 
 1. Clone the repository.
 2. Install the dependencies by running npm install.
 3. Start the Angular development server by running ng serve.
-4. Configure Nginx server with PHP-FPM and PHP-MySql modules.
+4. Configure Nginx server with PHP-FPM and PHP-MySQL modules.
 
 ### Build
 
