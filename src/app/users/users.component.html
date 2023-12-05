@@ -1,4 +1,4 @@
-<button class="button"
+<button matButton class="button"
         *ngIf="showWizard"
         (click)="toggleWizard(showWizard)"
         >{{ "addUser" | transloco }}</button>
@@ -12,6 +12,7 @@
 <div class="mat-elevation-z8" *ngIf="showWizard">
   <table mat-table 
         class="full-width-table usersTable" 
+        id="table"
         matSort aria-label="Elements" [dataSource]="dataSource">
     
     <!-- Id Column -->
