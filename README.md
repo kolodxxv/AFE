@@ -29,7 +29,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 1. Navigate to http://localhost:4200/ in your web browser.
 2. Use the login system to log in.
-3. Once logged in, you will be able to access the separated task system.
+3. Once logged in as 'Dev' or 'Tester', you will be able to access the separated task system.
 
 ## Contributing
 
