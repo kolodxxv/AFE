@@ -1,0 +1,54 @@
+<button matButton class="button"
+        *ngIf="showWizard"
+        (click)="toggleWizard(showWizard)"
+        >{{ "addUser" | transloco }}</button>
+<ng-container *ngIf="!showWizard">
+  <app-stepper [dataSource]="dataSource"  
+              [displayedColumns]="displayedColumns"
+              [inputSubject]="inputSubject" 
+              (checkConditionFromChildComponent)="checkConditionFromChildComponent($event)"
+              ></app-stepper>
+</ng-container>
+<div class="mat-elevation-z8" *ngIf="showWizard">
+  <table mat-table 
+        class="full-width-table usersTable" 
+        id="table"
+        matSort aria-label="Elements" [dataSource]="dataSource">
+    
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>№</th>
+      <td mat-cell *matCellDef="let row" (click)="showUserDataById(row)">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "name" | transloco }}</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- Surname Column -->
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "surname" | transloco }}</th>
+      <td mat-cell *matCellDef="let row">{{row.surname | surname}}</td>
+    </ng-container>
+
+    <!-- Country Column -->
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "country" | transloco }}</th>
+      <td mat-cell *matCellDef="let row">{{row.country}}</td>
+    </ng-container>
+
+    <!-- City Column -->
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "city" | transloco }}</th>
+      <td mat-cell *matCellDef="let row">{{row.city}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</div>
+
