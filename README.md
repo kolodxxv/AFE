@@ -2,7 +2,7 @@
 
 This is a CRM project that has a users table, login system, and a separated task system depending on which user is logged in. The front-end was created using Angular, while the back-end was developed using native PHP.
 
-## Features
+### Features
 
 * Users table
 * Login system
@@ -20,11 +20,11 @@ This is a CRM project that has a users table, login system, and a separated task
 3. Start the Angular development server by running ng serve.
 4. Start the PHP server by running php -S localhost:8000.
 
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Usage
+### Usage
 
 1. Navigate to http://localhost:4200/ in your web browser.
 2. Use the login system to log in.
