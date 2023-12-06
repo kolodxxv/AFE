@@ -1,6 +1,8 @@
 import { Component, Input, Output, TemplateRef, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, debounceTime, Observable, Subject, tap, map } from 'rxjs';
+
+import { DataService } from 'src/app/shared/data.service';
 import { UsersItem } from '../../shared/interfaces/interface';
 import { UsersService } from '../../shared/users.service';
 import { Utils } from 'src/app/utils/utils';
@@ -25,7 +27,8 @@ export class StepperComponent implements OnInit {
 
   constructor(
     private userSrvc: UsersService,
-    private utils: Utils
+    private utils: Utils,
+    private dataService: DataService
   ) {
   }
 
@@ -41,35 +44,27 @@ export class StepperComponent implements OnInit {
 
 
   public onSubmit(): void {
-    const copyOfData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-    this.dataSource.pipe(map(items => {copyOfData.next(items) })).subscribe();
 
     // Passing new user info into the table
     const {nameCtrl, surnameCtrl, countryCtrl, cityCtrl } = this.userInfoGroup.controls
     this.newUser = {
-      id: this.generateMaxId(copyOfData.getValue()),
       name: nameCtrl.value, 
       surname: surnameCtrl.value,
       country: countryCtrl.value,
       city: cityCtrl.value
       }
 
-    this.dataSource.pipe(
-      tap(userData => {
-        userData.push(this.newUser)
-      })
-    )
-    .subscribe()              
-    this.checkConditionFromChildComponent.emit(this.dataSource);
+    this.dataService.addUser(this.newUser).subscribe();            
+    this.checkConditionFromChildComponent.emit(this.newUser);
     
   }
 
-  private generateMaxId(data:any): number {
-    let arrayId: number[] = [];
-    for (let i = 0; i < data.length; i++) {
-      arrayId.push(data[i].id)
-    }
-    return arrayId[arrayId.length - 1] + 1
-  }
+  // private generateMaxId(data:any): number {
+  //   let arrayId: number[] = [];
+  //   for (let i = 0; i < data.length; i++) {
+  //     arrayId.push(data[i].id)
+  //   }
+  //   return arrayId[arrayId.length - 1] + 1
+  // }
   
 }

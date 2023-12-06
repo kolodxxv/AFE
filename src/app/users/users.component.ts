@@ -18,7 +18,7 @@ import { DataService } from '../shared/data.service';
 })
 export class UsersComponent {
   public dataSource: any;
-  public displayedColumns: string[] = ['id', 'name', 'surname', 'country', 'city'];
+  public displayedColumns: string[] = ['id', 'name', 'surname', 'country', 'city', 'delete'];
   public showWizard: any = true;
   public inputSubject: Subject<any> = new Subject<any>;
   private destroy$: Subject<boolean> = new Subject<boolean>;
@@ -52,9 +52,13 @@ export class UsersComponent {
     this.router.navigate([`users/${userData.id}`])
   }
 
-  public checkConditionFromChildComponent(tableData: string[]) : void {
-    // this.dataSource = tableData;
+  public checkConditionFromChildComponent() : void {
+    
     this.showWizard = true;
+  }
+
+  public eraseUser(id: number) {
+    this.dataSrvc.delUser(id).subscribe();
   }
 
   ngOnDestroy() {

@@ -6,7 +6,7 @@
   <app-stepper [dataSource]="dataSource"  
               [displayedColumns]="displayedColumns"
               [inputSubject]="inputSubject" 
-              (checkConditionFromChildComponent)="checkConditionFromChildComponent($event)"
+              (checkConditionFromChildComponent)="checkConditionFromChildComponent()"
               ></app-stepper>
 </ng-container>
 <div class="mat-elevation-z8" *ngIf="showWizard">
@@ -43,6 +43,18 @@
     <ng-container matColumnDef="city">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "city" | transloco }}</th>
       <td mat-cell *matCellDef="let row">{{row.city}}</td>
+    </ng-container>
+
+    <!-- Delete Button -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>
+       
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button class="removeCart" (click)="eraseUser(row.id)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

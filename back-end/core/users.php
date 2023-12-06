@@ -42,7 +42,8 @@
                 city
                 FROM
                 ' .$this->table . '
-                WHERE id = ? LIMIT 1';
+                WHERE id = ? 
+                LIMIT 1';
 
             // prepare statement
             $stmt = $this->conn->prepare($query);
@@ -109,20 +110,15 @@
 
         public function delete(){
             // create query
-            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+            $query = 'DELETE FROM ' . $this->table . '
+            WHERE id = ? 
+            LIMIT 1';
             // prepare statement
             $stmt = $this->conn->prepare($query);
-            // clean the data
-            $this->id = htmlspecialchars(strip_tags($this->id));
-            $stmt->bindParam(':id', $this->id);
+            // bind param
+            $stmt->bindParam(1, $this->id);
             // execute the query
-            if($stmt->execute()){
-                return true;
-            } else {
-                printf("Error %s. \n", $stmt->error);
-                return false;
-            }
+            $stmt->execute();
         }
-
     }
 ?>
